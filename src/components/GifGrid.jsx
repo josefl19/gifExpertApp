@@ -1,29 +1,21 @@
-import { useState, useEffect } from "react"
-import { getGifs } from "../helpers/getGifs"
+import { useFetchGifs } from "../hooks/useFetchGifs";
 import { GifItem } from "./GifItem";
 
 export const GifGrid = ({ category }) => {
     // getGifs(category);         // Nunca hacer esto directamente por optimización.
-    const [images, setImages] = useState([]);
-
-    /* 
-        useEffect -> Hook que permite disparar efectos secundarios, es decir, procesos a ejecutar cuando un proceso cambie
-        como por ejemplo cuando un valor cambie, cuando un parametro cambie, cuando se renderiza el componente por primera o n veces
-
-        No puede declarse una función async como parametro pero si puede llamar a una funcion que lo sea.
-    */
-    const getImages = async () => {
-        const newImages = await getGifs(category);
-        setImages(newImages);
-    }
-
-    useEffect(() => {
-        getImages();
-    }, []);
+    const { images, isLoading } = useFetchGifs( category );
 
     return (
         <>
             <h3>{category}</h3>
+            {
+                // isLoading
+                // ? ( <h2>Cargando...</h2> )
+                // : null                          // null porque en React no se renderiza.
+
+                // Otra forma sin incluir el null es con un if corto
+                isLoading && ( <h2>Cargando...</h2> )
+            }
             <div className="card-grid">
                 {
                     images.map( (image) => (
