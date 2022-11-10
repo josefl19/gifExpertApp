@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test para el componente GifItem Hacer match con el snapshot 1`] = `
+<div>
+  <div
+    class="card"
+  >
+    <img
+      alt="Titulo del item"
+      src="https://api.giphy.com/v1/gifs/search?api_key=FtiAvZc9zt3N8G5MwZkwoJBFdJizTyEY&q=Dogsu&limit=10"
+    />
+    <p>
+      Titulo del item
+    </p>
+  </div>
+</div>
+`;
